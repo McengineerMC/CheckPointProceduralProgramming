@@ -1,0 +1,67 @@
+//solution1 with procedure
+PROCEDURE dot_product(VAR T1,T2:ARRAY_OF INTEGER[50],VAR l:INTEGER; VAR ps : INTEGER)
+VAR
+    i : INTEGER;
+    ps : INTEGER := 0;
+BEGIN
+    FOR i FROM 0 TO l STEP 1  DO
+        ps := ps + T1[i] * T2[i];
+    END_FOR
+    Write(ps);
+END
+ALGORITHM orthogonal_vectors
+VAR
+    v1,v2 : ARRAY_OF INTEGER[50];
+    i,n : INTEGER;
+    psc : INTEGER := 0;//produit scalaire on va l'utilser pour comparer si le produit sclaire est orthogonal ou nn car la procédure ne renvoie pas de résultat
+BEGIN
+//entre le nombre d'element de vecteur
+    Read(n);
+//entrer le premier vecteur
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Read(v1[i]);
+    END_FOR
+//entrer le deuxiemme vecteur
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Read(v2[i]);
+    END_FOR
+    dot_product(v1,v2,n,psc);
+    IF ( psc = 0) THEN
+        Write("the vectors are orthogonal");
+    ELSE
+        Write("the vectors are not orthogonal");
+    END_IF
+    END
+//solution2 with function
+FUNCTION dot_prodcut(T1,T2:ARRAY_OF INTEGER[50],l:INTEGER) : INTEGER
+VAR
+    ps : INTEGER := 0;
+    i : INTEGER;
+BEGIN
+    FOR i FROM 0 TO l STEP 1  DO
+        ps := ps + T1[i] * T2[i];
+    END_FOR
+    RETURN ps ;
+END
+ALGORITHM orthogonal_vectors
+VAR
+    v1,v2 : ARRAY_OF INTEGER[50];
+    i,n : INTEGER;
+BEGIN
+//entre le nombre d'element de vecteur
+    Read(n);
+//entrer le premier vecteur
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Read(v1[i]);
+    END_FOR
+//entrer le deuxiemme vecteur
+    FOR i FROM 0 TO n-1 STEP 1  DO
+        Read(v2[i]);
+    END_FOR
+    res := dot_product(v1,v2,n);
+    IF (res = 0) THEN
+        Write("the vectror are orthogonal");
+    ELSE
+        Write("the vectror are not orthogonal");
+    END_IF
+    END
